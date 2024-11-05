@@ -1,0 +1,1 @@
+export const httpCreateProduct = async (req, res) =>{};

@@ -9,6 +9,6 @@ productRouter.get("/");
 // Ruta para traer un producto por su ID
 productRouter.get("/:pid");
 
-productRouter.post("/");
+productRouter.post("/", httpCreateProduct);
 
 export default productRouter;
