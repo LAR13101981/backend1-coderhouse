@@ -1,4 +1,4 @@
-import express from 'express';
+import express from "express";
 
 const app = express();
 
@@ -8,5 +8,5 @@ app.use(express.json());
 app.use;
 
 app.listen(PORT, () => {
-  console.log(`Server levantado en http://localhost:${PORT}`);
+    console.log(`Server levantado en http://localhost:${PORT}`);
 });
