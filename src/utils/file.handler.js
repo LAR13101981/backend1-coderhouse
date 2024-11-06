@@ -34,7 +34,7 @@ export const deleteJsonFile = async (filepath, filename) => {
         if (error.code === "ENOENT") {
             console.warn(`El archivo ${filename} no existe.`);
         } else{
-            throw new Error(`Error al eliminar el archivoi ${filename}.`);
+            throw new Error(`Error al eliminar el archivo ${filename}.`);
         }
     }
 

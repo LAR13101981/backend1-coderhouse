@@ -6,7 +6,7 @@ export default class CartModel {
     #jsonFilename;
     #carts;
     constructor(){
-        this.#jsonFilename = "carts.json";
+        this.#jsonFilename = "carrito.json";
     }
 
     // Busca un carrito por su ID
@@ -16,7 +16,7 @@ export default class CartModel {
             const cartFound = this.#carts.find((item) => item.id === Number(id));
 
             if (!cartFound){
-                throw new ErrorHandler("No se encontro ningun carrito con ese Id", 404);
+                throw new ErrorHandler(`No se encontro un carrito con el Id:${id}`, 404);
             }
 
             return cartFound;
@@ -38,8 +38,15 @@ export default class CartModel {
         try {
             const cartFound = await this.#findCartById(id);
             return cartFound;
+
         } catch (error) {
             throw new ErrorHandler(error.message, error.code);
         }
     }
+
+    async addNewCart(){}
+
+    async updateExistingCart(){}
+
+    async deleteCartById(){}
 }
