@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import { validateFilePathAndName } from "./file.validations";
+import { validateFilePathAndName } from "./file.validations.js";
 
 export const readJsonFile = async (filepath, filename)=>{
     validateFilePathAndName(filepath, filename);

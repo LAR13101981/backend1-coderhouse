@@ -1,7 +1,8 @@
-import paths from "../utils/paths";
-import ErrorHandler from "../utils/error.handler";
-import { readJsonFile, writeJsonFile } from "../utils/file.handler";
-import { convertToBoolean } from "../utils/converter";
+import paths from "../utils/paths.js";
+import ErrorHandler from "../utils/error.handler.js";
+import { readJsonFile, writeJsonFile, deleteJsonFile } from "../utils/file.handler.js";
+import { convertToBoolean } from "../utils/converter.js";
+import { generateId } from "../utils/collection.handler.js";
 
 export default class ProductModel {
     #jsonFilename;
@@ -15,15 +16,15 @@ export default class ProductModel {
     async #findProductById(id) {
         try {
             this.#products = await this.getAllProducts();
-            const productFound = this.#products.find((item) => item.id === Number(id));
+            const currentProduct = this.#products.find((product) => product.id === Number(id));
 
-            if (!productFound){
+            if (!currentProduct){
                 throw new ErrorHandler(`No se encontro un producto con el Id:${id}`, 404);
             }
 
-            return productFound;
+            return currentProduct;
         } catch (error) {
-            throw new error;
+            throw new ErrorHandler(error.message, error.code);
         }
     }
 
@@ -40,8 +41,8 @@ export default class ProductModel {
     // Trae un producto por su id
     async getProductById(id){
         try {
-            const productFound = await this.#findProductById(id);
-            return productFound;
+            const currentProduct = await this.#findProductById(id);
+            return currentProduct;
         } catch (error) {
             throw new ErrorHandler(error.message, error.code);
         }
@@ -56,10 +57,6 @@ export default class ProductModel {
                 throw new ErrorHandler("Faltan datos obligatorios", 400);
             }
 
-            if (!file?.filename){
-                throw new ErrorHandler("Falta el archivo de la imagen", 400);
-            }
-
             const newProduct = {
                 id: generateId(await this.getAllProducts()),
                 title,
@@ -69,7 +66,7 @@ export default class ProductModel {
                 status: convertToBoolean(status),
                 stock: Number(stock),
                 category,
-                thumbnail: file?.filename,
+                thumbnails: file? [file.filename] : [],
             };
 
             this.#products.push(newProduct);
@@ -77,16 +74,16 @@ export default class ProductModel {
 
             return newProduct;
         } catch (error) {
-            if (file?.filename) awaite;
+            throw new ErrorHandler(error.message, error.code);
         }
     }
 
     // Actualiza un producto por su Id
     async updateProductById (id, data, file) {
         try {
-            const { title, description, code, price, status, stock, category } = data;
             const oldProduct = await this.#findProductById(id);
-            const newThumbnail = file?.filename;
+            const { title, description, code, price, status, stock, category } = data;
+            const newThumbnails = file? [file.filename] : oldProduct.thumbnails;
 
             const updatedProduct = {
                 id: oldProduct.id,
@@ -97,10 +94,10 @@ export default class ProductModel {
                 status: status ? convertToBoolean(status) : oldProduct.status,
                 stock: stock ? Number(stock) : oldProduct.stock,
                 category: category || oldProduct.category,
-                thumbnail: newThumbnail || oldProduct.thumbnail,
+                thumbnails: newThumbnails || oldProduct.thumbnails,
             };
 
-            const index = this.#products.findindex((product)=> product.id === Number(id));
+            const index = this.#products.findIndex((product)=> product.id === Number(id));
             this.#products[index] = updatedProduct;
             await writeJsonFile(paths.files, this.#jsonFilename, this.#products );
 
@@ -110,16 +107,18 @@ export default class ProductModel {
         }
     }
 
-    // Borra un producto por su ID
+    // Borra un producto por su Id, con sus imagenes asociadas en caso de tener.
     async deleteProductById (id) {
         try {
-            const productFound = await this.#findProductById(id);
+            const currentProduct = await this.#findProductById(id);
 
-            if (productFound.thumbnail){
-                await deleteJsonFile(paths.images, productFound.thumbnail);
+            if (currentProduct.thumbnails && currentProduct.thumbnails.length > 0){
+                for (const thumbnail of currentProduct.thumbnails){
+                    await deleteJsonFile(paths.images, thumbnail);
+                }
             }
 
-            const index = this.#products.findindex((product)=> product.id === Number(id));
+            const index = this.#products.findIndex((product)=> product.id === Number(id));
             this.#products.splice(index, 1);
             await writeJsonFile(paths.files, this.#jsonFilename, this.#products);
         } catch (error) {

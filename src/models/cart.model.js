@@ -1,6 +1,6 @@
-import paths from "../utils/paths";
-import ErrorHandler from "../utils/error.handler";
-import { readJsonFile } from "../utils/file.handler";
+import paths from "../utils/paths.js";
+import ErrorHandler from "../utils/error.handler.js";
+import { readJsonFile } from "../utils/file.handler.js";
 
 export default class CartModel {
     #jsonFilename;
@@ -13,13 +13,13 @@ export default class CartModel {
     async #findCartById(id) {
         try {
             this.#carts = await this.getAllCarts();
-            const cartFound = this.#carts.find((item) => item.id === Number(id));
+            const currentCart = this.#carts.find((item) => item.id === Number(id));
 
-            if (!cartFound){
+            if (!currentCart){
                 throw new ErrorHandler(`No se encontro un carrito con el Id:${id}`, 404);
             }
 
-            return cartFound;
+            return currentCart;
         } catch (error) {
             throw new error;
         }
@@ -36,8 +36,8 @@ export default class CartModel {
 
     async getCartById(id){
         try {
-            const cartFound = await this.#findCartById(id);
-            return cartFound;
+            const currentCart = await this.#findCartById(id);
+            return currentCart;
 
         } catch (error) {
             throw new ErrorHandler(error.message, error.code);
