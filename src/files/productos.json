@@ -1,23 +1,12 @@
 [
 	{
 		"id": 1,
-		"title": "Total full CG x 25 ml",
+		"title": "Total full CG x 15 ml",
 		"description": "Antiparasitario interno en suspension para perros y gatos.",
 		"code": "00101",
 		"price": 4200,
 		"status": true,
-		"stock": 50,
-		"category": "Holliday",
-		"thumbnails": []
-	},
-	{
-		"id": 2,
-		"title": "Cardial B5 mg x 20 comp",
-		"description": "Vaso dilatador mixto",
-		"code": "00102",
-		"price": 8500,
-		"status": true,
-		"stock": 20,
+		"stock": 30,
 		"category": "Holliday",
 		"thumbnails": []
 	}

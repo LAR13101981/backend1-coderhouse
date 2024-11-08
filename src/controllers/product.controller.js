@@ -2,11 +2,11 @@ import ProductModel from "../models/product.model.js";
 
 const productInstance = new ProductModel();
 
-export const httpCreateProduct = async (req, res) =>{
+export const httpAddNewProduct = async (req, res) =>{
     try {
         const newProduct = await productInstance.addNewProduct(req.body);
 
-        res.status(201).json({ message: "Product Created", payload: newProduct });
+        res.status(201).json({ message: "Product added", payload: newProduct });
     } catch (error) {
         res.status(error.code || 500).json({ message: error.message });
     }

@@ -38,7 +38,7 @@ export default class ProductModel {
         }
     }
 
-    // Trae un producto por su id
+    // Trae un producto especifico por su id
     async getProductById(id){
         try {
             const currentProduct = await this.#findProductById(id);

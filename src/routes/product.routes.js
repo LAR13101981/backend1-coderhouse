@@ -1,11 +1,11 @@
 import { Router } from "express";
-import { htppGetProductById, httpGetAllproducts, httpCreateProduct, httpUpdateProductById, httpDeleteProductById } from "../controllers/product.controller.js";
+import { htppGetProductById, httpGetAllproducts, httpAddNewProduct, httpUpdateProductById, httpDeleteProductById } from "../controllers/product.controller.js";
 
 // Asignando la instancia de router de express a una variable
 const productRouter = Router();
 
 // Ruta para crear un producto
-productRouter.post("/", httpCreateProduct);
+productRouter.post("/", httpAddNewProduct);
 // Ruta para traer todos los productos
 productRouter.get("/", httpGetAllproducts);
 // Ruta para traer un producto por su ID
