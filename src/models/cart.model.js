@@ -2,12 +2,18 @@ import paths from "../utils/paths.js";
 import ErrorHandler from "../utils/error.handler.js";
 import { readJsonFile, writeJsonFile } from "../utils/file.handler.js";
 import { generateId } from "../utils/collection.handler.js";
+import ProductModel from "./product.model.js";
 
+// Busque utilizar un metodo de la clase ProductModel, en esta clase, me salio toda un explicacion de
+// dependency injection que me parecio complicada, asi que decidi simplemente crear una nueva instancia
+// no se si es correcto o la mejor opcion, pero me resolvio lo que queria realizar que es chequear si el
+// producto que paso en addProductToCart, realmente existe.
 export default class CartModel {
     #jsonFilename;
     #carts;
     constructor(){
         this.#jsonFilename = "carrito.json";
+        this.productModel = new ProductModel();
     }
 
     // Busca un carrito por su ID
@@ -48,11 +54,12 @@ export default class CartModel {
         }
     }
 
+    // Crea un nuevo carrito
     async addNewCart(){
         try {
             const newCart = {
                 id: generateId(await this.getAllCarts()),
-                carts: [],
+                products: [],
             };
 
             this.#carts.push(newCart);
@@ -65,8 +72,37 @@ export default class CartModel {
 
     }
 
-    async addProductToCart(){}
+    // Agrega un producto a un carrito existente, o agrega mas cantidad del producto si ya existe en el carrito.
+    // Tambien chequea la existencia del carrito y del producto a sumar.
+    async addProductToCart(cartId, productId){
+        try {
+            // Busca si el producto existe
+            const productExists = await this.productModel.getProductById(productId);
 
+            if (!productExists){
+                throw new ErrorHandler( error.message, error.code);
+            }
+
+            const selectedCart = await this.#findCartById(cartId);
+
+            // Buscando si el producto ya existe en el carrito
+            const existingProduct = selectedCart.products.find((product)=> product.id === Number(productId));
+
+            // Condicional si el producto existe solo suma a la cantidad
+            if (existingProduct){
+                existingProduct.quantity += 1;
+            } else {
+                selectedCart.products.push({ id: Number(productId), quantity: 1 });
+            }
+
+            await writeJsonFile(paths.files, this.#jsonFilename, this.#carts);
+
+        } catch (error) {
+            throw new ErrorHandler(error.message, error.code);
+        }
+    }
+
+    // Borra todo el carrito por us Id
     async deleteCartById (id) {
         try {
             const index = this.#carts.findIndex((cart)=> cart.id === Number(id));

@@ -33,6 +33,16 @@ export const httpGetCartById = async (req, res) => {
     }
 };
 
+export const httpAddProductToCart = async (req, res) => {
+    try {
+        const updatedCart = await cartInstance.addProductToCart(req.params.cid, req.params.pid);
+
+        res.status(200).json({ messsage: "Cart updated", payload: updatedCart });
+    } catch (error) {
+        res.status(error.code || 500).json({ message: error.message });
+    }
+};
+
 export const htttpDeleteCartById = async (req, res) => {
     try {
         const cart = await cartInstance.deleteCartById(req.params.cid);

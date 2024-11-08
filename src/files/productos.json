@@ -9,5 +9,16 @@
 		"stock": 30,
 		"category": "Holliday",
 		"thumbnails": []
+	},
+	{
+		"id": 2,
+		"title": "Cardial B5 mg x 20 comp",
+		"description": "Vaso dilatador mixto",
+		"code": "00102",
+		"price": 8500,
+		"status": true,
+		"stock": 20,
+		"category": "Holliday",
+		"thumbnails": []
 	}
 ]
