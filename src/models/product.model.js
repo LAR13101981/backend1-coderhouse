@@ -57,6 +57,10 @@ export default class ProductModel {
                 throw new ErrorHandler("Faltan datos obligatorios", 400);
             }
 
+            if (!file) {
+                console.warn("WarningL: No file was attached, product will be created without an image");
+            }
+
             const newProduct = {
                 id: generateId(await this.getAllProducts()),
                 title,
@@ -83,7 +87,7 @@ export default class ProductModel {
         try {
             const oldProduct = await this.#findProductById(id);
             const { title, description, code, price, status, stock, category } = data;
-            const newThumbnails = file? [file.filename] : oldProduct.thumbnails;
+            const newThumbnails = file ? [file.filename] : oldProduct.thumbnails;
 
             const updatedProduct = {
                 id: oldProduct.id,

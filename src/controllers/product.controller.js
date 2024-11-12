@@ -6,7 +6,7 @@ const productInstance = new ProductModel();
 // Controlador que llama al metodo para agregar un producto
 export const httpAddNewProduct = async (req, res) =>{
     try {
-        const newProduct = await productInstance.addNewProduct(req.body);
+        const newProduct = await productInstance.addNewProduct(req.body, req.file);
 
         res.status(201).json({ message: "Product added", payload: newProduct });
     } catch (error) {
