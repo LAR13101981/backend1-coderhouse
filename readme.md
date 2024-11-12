@@ -38,6 +38,14 @@ PRODUCTOS
         "category": "Holliday"
     }
 
+- Crear un producto nuevo con imagen
+    
+    POST /api/products
+    Body: form-data
+    
+    Pasar los parametros como key - value
+    y agregar un key file con tipo file y cargar la imagen.
+
 - Traer todos los productos
 
     GET /api/products    
