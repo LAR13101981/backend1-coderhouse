@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { htppGetProductById, httpGetAllproducts, httpAddNewProduct, httpUpdateProductById, httpDeleteProductById } from "../controllers/product.controller.js";
+import { htppGetProductById, httpGetAllproducts, httpAddNewProduct, httpUpdateProductById, httpDeleteProductById } from "../controllers/products.controller.js";
 import uploader from "../utils/uploader.js";
 
 // Asignando la instancia de router de express a una variable

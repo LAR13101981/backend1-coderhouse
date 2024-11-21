@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { httpAddNewCart, httpAddProductToCart, httpGetAllCarts, httpGetCartById, htttpDeleteCartById } from "../controllers/cart.controller.js";
+import { httpAddNewCart, httpAddProductToCart, httpGetAllCarts, httpGetCartById, htttpDeleteCartById } from "../controllers/carts.controller.js";
 
 // Asignando la instancia de router de express a una variable
 const cartRouter = Router();
