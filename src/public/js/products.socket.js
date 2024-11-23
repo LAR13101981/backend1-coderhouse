@@ -2,14 +2,52 @@
 const socket = io();
 
 const productsList = document.getElementById("products-list");
+const productsForm = document.getElementById("products-form");
+const errorMessage = document.getElementById("error-message");
+const imputProductId = document.getElementById("input-product-id");
+const btnDeleteProduct = document.getElementById("btn-delete-product");
 
 socket.on("products-list", (data) => {
     const products = data.products ?? [];
     productsList.innerText = "";
 
     products.forEach((product) => {
+        //Campos a mostrar en la lista de los productos (Solo id y nombre del producto)
         productsList.innerHTML += `<li> Id: ${product.id} - Nombre: ${product.title} </li>`;
     });
+});
+
+productsForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const formData = new FormData(form);
+    errorMessage.innerText = "";
+
+    form.reset();
+
+    socket.emit("add-product", {
+        title: formData.get("title"),
+        description: formData.get("description"),
+        code: formData.get("code"),
+        price: formData.get("price"),
+        status: formData.get("status"),
+        stock: formData.get("stock"),
+        category: formData.get("category"),
+    });
+});
+
+btnDeleteProduct.onclick = () => {
+    const id = Number(imputProductId.value);
+    imputProductId.value = "";
+    errorMessage.innerText = "";
+
+    if (id > 0) {
+        socket.emit("delete-product", { id });
+    }
+};
+
+socket.on("error-message", (data) =>{
+    errorMessage.innerText = data.message;
 });
 
 // Evento que se activa al conectar con el servidor

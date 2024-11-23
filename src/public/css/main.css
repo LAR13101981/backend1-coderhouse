@@ -16,3 +16,93 @@ h1 {
 .error404 img {
     width: 400px;
 }
+
+.products-style {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 300px; 
+    margin: 0; 
+    align-items: flex-start; 
+  }
+  
+  .products-style input {
+    padding: 8px;
+    font-size: 16px;
+    width: 100%; 
+    box-sizing: border-box; 
+  }
+  
+  .products-style input[type="submit"] {
+    background-color: blue;
+    color: white;
+    border: none;
+    cursor: pointer;
+    align-self: flex-start; 
+  }
+  
+  .products-style input[type="submit"]:hover {
+    background-color: darkblue;
+  }
+  
+  /* Style for the product list */
+.products-list-style {
+    list-style-type: none; /* Removes bullets from the list */
+    padding: 0;
+    margin: 20px 0;
+    border: 1px solid #ddd; /* Adds a border around the list */
+    border-radius: 5px;
+    max-width: 300px; /* Limits the list width */
+    background-color: #f9f9f9;
+  }
+  
+  .products-list-style li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .products-list-style li:last-child {
+    border-bottom: none; /* Removes the border from the last item */
+  }
+  
+  /* Style for the delete product section */
+  .delete-product-style {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Adds space between elements */
+    margin-top: 20px;
+  }
+  
+  .delete-product-input-style {
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 150px; /* Limits the input width */
+  }
+  
+  .delete-product-style #btn-delete-product {
+    padding: 8px 16px;
+    background-color: #ff4d4d; /* Red background for emphasis */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease; /* Smooth hover effect */
+  }
+  
+  .delete-product-style #btn-delete-product:hover {
+    background-color: #e60000; /* Darker red on hover */
+  }
+  
+  /* Style for error messages */
+  .error-message-style {
+    color: #ff4d4d; /* Red text color for error */
+    font-weight: bold;
+    font-size: 24px;  
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 10px;
+    max-width: 300px;
+  }

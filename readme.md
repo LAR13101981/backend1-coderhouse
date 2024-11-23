@@ -1,6 +1,6 @@
 Pre entrega 1 CoderHouse Backend 1
 
-Descripcion: Es una simple api orientada a un e-commerce con dos caracteristicas principales que manejan productos y carritos de compra. Contiene operaciones crud elementales y validaciones basicas.
+Descripcion: Es una simple api orientada a un e-commerce con dos caracteristicas principales que manejan productos y carritos de compra. Contiene operaciones crud elementales y validaciones basicas, un motor de plantillas para renderizar una pagina de inicio basica con la lista de las productos, y otra con la ruta especifica que trabaja con websocket para renderizar la misma lista de productos pero en tiempo real con los cambios realizados.
 
 Caracteristicas:
 
@@ -8,6 +8,7 @@ Productos: Crear, leer, modificar, borrar y mostar los productos.
 Carritos: Crear, borrar, mostrar y agregar productos a los carritos.
 Validacion: Validacion basica para asegurar el ingreso correcto de datos y parametros.
 Manejo de errores: Mensajes de error para peticiones incorrectas.
+Renderizado de pagina inicial: Realizado con el motor de plantillas handlebars
 
 Tecnologias usadas:
 
@@ -15,10 +16,13 @@ JavaScript.js
 Node.js
 Express.js
 File System (fs) para la persistencia de los datos.
+handlebars
+socket.io
 
 Uso
 
 Se puede utilizar herramients como Postman para interactuar con los endpoints de la api.
+O se puede ingresar productos mediante el formulario en la ruta especifica /realTimeProducts.
 
 API endpoints
 
@@ -88,8 +92,3 @@ CARRITOS
 - Borrar un carrito con todo su contenido por su ID
 
     DELETE /api/carts/(cartID)
-
-
-Futuras mejoras
-
-- Incorporar la posibilidad de adjuntar una o mas imagenes a cada producto.

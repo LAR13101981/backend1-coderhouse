@@ -33,5 +33,82 @@
 		"thumbnails": [
 			"file_2693_12112024_192128.jpg"
 		]
+	},
+	{
+		"id": 4,
+		"title": "Acedan Gotas",
+		"description": "Sedante en gotas para caninos y felinos",
+		"code": "0104",
+		"price": 4500,
+		"status": true,
+		"stock": 120,
+		"category": "Holliday",
+		"thumbnails": []
+	},
+	{
+		"id": 5,
+		"title": "Atriben x 20 ml iny.",
+		"description": "Diuretico inyectible para caninos y felinos",
+		"code": "0201",
+		"price": 9500,
+		"status": true,
+		"stock": 10,
+		"category": "Holliday",
+		"thumbnails": []
+	},
+	{
+		"id": 6,
+		"title": "Otovier NF gotas",
+		"description": "Solucion para la otitis canina y felina",
+		"code": "0301",
+		"price": 3500,
+		"status": true,
+		"stock": 48,
+		"category": "J'Anvier",
+		"thumbnails": []
+	},
+	{
+		"id": 7,
+		"title": "Contal 60mg comprimidos",
+		"description": "Anticonvulsivo para caninos y felinos",
+		"code": "0302",
+		"price": 4500,
+		"status": true,
+		"stock": 60,
+		"category": "J'Anvier",
+		"thumbnails": []
+	},
+	{
+		"id": 8,
+		"title": "Artrin x 30 comprimidos",
+		"description": "Antiartrosico en comprimidos para caninos",
+		"code": "0401",
+		"price": 14500,
+		"status": true,
+		"stock": 15,
+		"category": "Brouwer",
+		"thumbnails": []
+	},
+	{
+		"id": 9,
+		"title": "Tribiotic x 100 ml inyectable",
+		"description": "Antibiotico de amplio espectro",
+		"code": "0501",
+		"price": 22000,
+		"status": true,
+		"stock": 12,
+		"category": "Afford",
+		"thumbnails": []
+	},
+	{
+		"id": 10,
+		"title": "Vanguard Plus 5",
+		"description": "Vacuna quintuple para caninos",
+		"code": "0601",
+		"price": 10500,
+		"status": true,
+		"stock": 50,
+		"category": "Zoetis",
+		"thumbnails": []
 	}
 ]
