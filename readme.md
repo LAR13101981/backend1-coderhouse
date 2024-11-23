@@ -28,6 +28,15 @@ API endpoints
 
 PRODUCTOS
 
+- Lista de productos en tiempo real
+
+    Accediendo a la ruta especifica /realTimeProducts.
+
+    - Muestra una lista de los productos existente en tiempo real via websocket.
+    - Permite el agregado de nuevos productos a la base de datos.
+    - Permite eliminar productos ingresando el Id correspondiente.
+
+
 - Crear un producto nuevo
 
     POST /api/products
