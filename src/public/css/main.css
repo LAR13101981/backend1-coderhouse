@@ -106,3 +106,18 @@ h1 {
     margin-top: 10px;
     max-width: 300px;
   }
+
+  .home-products-list-style {
+    list-style-type: none; /* Removes bullets from the list */
+    padding: 0;
+    margin: 20px 0;
+    border: 1px solid #ddd; /* Adds a border around the list */
+    border-radius: 5px;
+    max-width: 300px; /* Limits the list width */
+    background-color: #f9f9f9;
+  }
+
+  .home-products-list-style li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
