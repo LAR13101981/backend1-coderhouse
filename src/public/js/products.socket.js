@@ -12,8 +12,13 @@ socket.on("products-list", (data) => {
     productsList.innerText = "";
 
     products.forEach((product) => {
-        //Campos a mostrar en la lista de los productos (Solo id y nombre del producto)
-        productsList.innerHTML += `<li> Id: ${product.id} - Nombre: ${product.title} </li>`;
+        // Campos a mostrar en la lista de los productos en tiempo real.
+        // Decidi mostrar solo los atributos que considere mas relevantes sobre el producto.
+        productsList.innerHTML += `<li> Id: ${product.id}<br>
+    Nombre: ${product.title}<br>
+    Precio: $ ${product.price}<br>
+    Stock: ${product.stock}<br>
+    Laboratorio: ${product.category} </li>`;
     });
 });
 

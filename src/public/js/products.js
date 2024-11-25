@@ -9,6 +9,8 @@ const loadProductsList = async () => {
 
     let productsHTML = "";
 
+    // Aca decidi dejar una lista simple con solo el Id y el nombre del producto.
+    // En real time si agregue mas campos a mostrar.
     products.forEach( (product) => {
         productsHTML += `<li> ID: ${product.id} - Nombre: ${product.title} </li>`; });
 
