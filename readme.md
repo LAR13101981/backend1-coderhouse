@@ -1,4 +1,4 @@
-Pre entrega 1 CoderHouse Backend 1
+Pre entrega 2 CoderHouse Backend 1
 
 Descripcion: Es una simple api orientada a un e-commerce con dos caracteristicas principales que manejan productos y carritos de compra. Contiene operaciones crud elementales y validaciones basicas, un motor de plantillas para renderizar una pagina de inicio basica con la lista de las productos, y otra con la ruta especifica que trabaja con websocket para renderizar la misma lista de productos pero en tiempo real con los cambios realizados.
 
