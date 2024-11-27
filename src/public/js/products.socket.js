@@ -28,9 +28,7 @@ productsForm.addEventListener("submit", (event) => {
     const formData = new FormData(form);
     errorMessage.innerText = "";
 
-    form.reset();
-
-    socket.emit("add-product", {
+    const productData = {
         title: formData.get("title"),
         description: formData.get("description"),
         code: formData.get("code"),
@@ -38,7 +36,24 @@ productsForm.addEventListener("submit", (event) => {
         status: formData.get("status"),
         stock: formData.get("stock"),
         category: formData.get("category"),
-    });
+    };
+
+    const file = formData.get("thumbnails");
+
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = () => {
+            const fileData = reader.result; // Base64 string or binary
+            console.log("Sending file data". fileData);
+            socket.emit("add-product", { productData, fileData });
+        };
+        reader.readAsDataURL(file); // Use Base64 encoding
+    } else {
+        socket.emit("add-product", { productData, fileData: null });
+    }
+
+    form.reset();
+
 });
 
 btnDeleteProduct.onclick = () => {

@@ -34,6 +34,7 @@ PRODUCTOS
 
     - Muestra una lista de los productos existente en tiempo real via websocket.
     - Permite el agregado de nuevos productos a la base de datos.
+    - Permite el agregado de imagen del producto via Websocket.
     - Permite eliminar productos ingresando el Id correspondiente.
 
 
