@@ -1,19 +1,17 @@
 import { Router } from "express";
-import { htppGetProductById, httpGetAllproducts, httpAddNewProduct, httpUpdateProductById, httpDeleteProductById } from "../controllers/products.controller.js";
+import { htppGetProductById, httpGetAllproducts, httpCreateNewProduct, httpUpdateProductById, httpDeleteProductById } from "../controllers/products.controller.js";
 import uploader from "../utils/uploader.js";
 
-// Asignando la instancia de router de express a una variable
 const productRouter = Router();
 
-// Ruta para crear un producto
-productRouter.post("/", uploader.single("file"), httpAddNewProduct);
-// Ruta para traer todos los productos
+productRouter.post("/", uploader.single("file"), httpCreateNewProduct);
+
 productRouter.get("/", httpGetAllproducts);
-// Ruta para traer un producto por su ID
+
 productRouter.get("/:pid", htppGetProductById);
-// Ruta para elminar un producto por su ID
+
 productRouter.delete("/:pid", httpDeleteProductById);
-// Ruta para actualizar un producto por su ID
-productRouter.put("/:pid", httpUpdateProductById);
+
+productRouter.put("/:pid", uploader.single("file"), httpUpdateProductById);
 
 export default productRouter;

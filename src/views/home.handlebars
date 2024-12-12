@@ -1,15 +1,59 @@
 <header>
-<h1>Pagina de Inicio - Productos</h1>
+    <h1>Pagina de Inicio</h1>
 </header>
 
 <main>
     <section>
         <h3>Lista de productos</h3>
-        <div>            
-            <ul id="products-list" class= "home-products-list-style"></ul>
+        
+        <div>
+            <table id="products-table" class="products-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th id="sort-name">Nombre Producto 
+                            <!-- Button for sorting by name -->
+                            <button class="sort-btn" onclick="sortByName('asc')">🔼</button>
+                            <button class="sort-btn" onclick="sortByName('desc')">🔽</button>
+                        </th>
+                        <th>Precio</th>
+                        <th>Stock</th>
+                        <th id="sort-availability">Disponibilidad 
+                            <!-- Button for sorting by availability -->
+                            <button class="sort-btn" onclick="sortByAvailability('asc')">🔼</button>
+                            <button class="sort-btn" onclick="sortByAvailability('desc')">🔽</button>
+                        </th>
+                        <th>Controles</th>
+                    </tr>
+                </thead>
+                <tbody id="products-list" class="products-list">
+                    <!-- Product rows will be inserted here dynamically -->
+                </tbody>
+            </table>
         </div>
-        <button id="btn-refresh-products-list">Actualizar</button>
+
+        <!-- Pagination Section with Current Page Display -->
+        <div class="pagination">
+            <button id="first-page" class="page-btn">Primera</button>
+            <button id="previous-page" class="page-btn">Anterior</button>
+
+            <!-- Current Page Display -->
+            <span id="current-page" class="page-info">Página 1</span>
+
+            <button id="next-page" class="page-btn">Siguiente</button>
+            <button id="last-page" class="page-btn">Última</button>
+        </div>
+
+        <!-- Additional Buttons (Refresh & Go to Cart) -->
+        <div class="action-buttons">
+            <!-- Refresh Button (left side) -->
+            <button id="refresh-btn" class="action-btn">Actualizar Lista</button>
+
+            <!-- Go to Cart Button (right side) -->
+            <button id="go-to-cart-btn" class="action-btn">🛒 Ir al Carrito</button>
+        </div>
     </section>
 </main>
 
 <script src="/api/public/js/products.js"></script>
+

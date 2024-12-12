@@ -1,7 +1,8 @@
 import multer from "multer";
-import paths from "./paths.js";
-import { generateNameForFile } from "./random.js";
+//import paths from "./paths.js";
+//import { generateNameForFile } from "./random.js";
 
+/*
 const storage = multer.diskStorage({
     destination: (req, file, callback) => {
         callback(null, paths.images);
@@ -12,7 +13,7 @@ const storage = multer.diskStorage({
         callback(null, filename);
     },
 });
-
-const uploader = multer({ storage });
+*/
+const uploader = multer();
 
 export default uploader;

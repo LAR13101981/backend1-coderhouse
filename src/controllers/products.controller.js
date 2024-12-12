@@ -1,12 +1,10 @@
-import ProductModel from "../models/product.model.js";
+import ProductManager from "../managers/product.manager.js";
 
-// Nueva instancia de ProductModel
-const productInstance = new ProductModel();
+const productInstance = new ProductManager();
 
-// Controlador que llama al metodo para agregar un producto
-export const httpAddNewProduct = async (req, res) =>{
+export const httpCreateNewProduct = async (req, res) =>{
     try {
-        const newProduct = await productInstance.addNewProduct(req.body, req.file);
+        const newProduct = await productInstance.createNewProduct(req.body, req.file);
 
         res.status(201).json({ message: "Product added", payload: newProduct });
     } catch (error) {
@@ -14,10 +12,10 @@ export const httpAddNewProduct = async (req, res) =>{
     }
 };
 
-// Controlador que llama al metodo para traer todos los productos
 export const httpGetAllproducts = async (req, res) => {
     try {
-        const products = await productInstance.getAllProducts();
+        const params = req.query;
+        const products = await productInstance.getAllProducts(params);
 
         res.status(200).json({
             message: "This are all the products",
@@ -27,7 +25,6 @@ export const httpGetAllproducts = async (req, res) => {
     }
 };
 
-// Controlador que llama al metodo para traer un producto por su Id
 export const htppGetProductById = async (req, res) => {
     try {
         const product = await productInstance.getProductById(req.params.pid);
@@ -38,7 +35,6 @@ export const htppGetProductById = async (req, res) => {
     }
 };
 
-// Controlador que llama al metodo modificar un producto
 export const httpUpdateProductById = async (req, res) => {
     try {
         const product = await productInstance.updateProductById(req.params.pid, req.body, req.file);
@@ -49,7 +45,6 @@ export const httpUpdateProductById = async (req, res) => {
     }
 };
 
-// Controlador que llama al metodo para borrar un producto por su Id
 export const httpDeleteProductById = async (req, res)=> {
     try {
         const product = await productInstance.deleteProductById(req.params.pid);

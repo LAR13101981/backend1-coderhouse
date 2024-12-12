@@ -3,7 +3,7 @@
 }
 
 h1 {
-    color: brown;
+    color: rgb(0, 0, 0);
 }
 
 .error404 {
@@ -43,33 +43,31 @@ h1 {
   
   .products-style input[type="submit"]:hover {
     background-color: darkblue;
-  }
+  }  
   
-  /* Style for the product list */
-.products-list-style {
-    list-style-type: none; /* Removes bullets from the list */
+.realtime-products-list-style {
+    list-style-type: none; 
     padding: 0;
     margin: 20px 0;
-    border: 1px solid #ddd; /* Adds a border around the list */
+    border: 1px solid #ddd; 
     border-radius: 5px;
-    max-width: 300px; /* Limits the list width */
+    max-width: 300px; 
     background-color: #f9f9f9;
   }
   
-  .products-list-style li {
+  .realtime-products-list-style li {
     padding: 10px;
     border-bottom: 1px solid #ddd;
   }
   
-  .products-list-style li:last-child {
-    border-bottom: none; /* Removes the border from the last item */
-  }
+  .realtime-products-list-style li:last-child {
+    border-bottom: none; 
+  }  
   
-  /* Style for the delete product section */
   .delete-product-style {
     display: flex;
     align-items: center;
-    gap: 10px; /* Adds space between elements */
+    gap: 10px; 
     margin-top: 20px;
   }
   
@@ -78,27 +76,26 @@ h1 {
     font-size: 14px;
     border: 1px solid #ddd;
     border-radius: 5px;
-    width: 150px; /* Limits the input width */
+    width: 150px; 
   }
   
   .delete-product-style #btn-delete-product {
     padding: 8px 16px;
-    background-color: #ff4d4d; /* Red background for emphasis */
+    background-color: #ff4d4d; 
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 14px;
-    transition: background-color 0.3s ease; /* Smooth hover effect */
+    transition: background-color 0.3s ease; 
   }
   
   .delete-product-style #btn-delete-product:hover {
-    background-color: #e60000; /* Darker red on hover */
-  }
+    background-color: #e60000; 
+  }  
   
-  /* Style for error messages */
   .error-message-style {
-    color: #ff4d4d; /* Red text color for error */
+    color: #ff4d4d; 
     font-weight: bold;
     font-size: 24px;  
     border-radius: 5px;
@@ -108,12 +105,12 @@ h1 {
   }
 
   .home-products-list-style {
-    list-style-type: none; /* Removes bullets from the list */
+    list-style-type: none; 
     padding: 0;
     margin: 20px 0;
-    border: 1px solid #ddd; /* Adds a border around the list */
+    border: 1px solid #ddd; 
     border-radius: 5px;
-    max-width: 300px; /* Limits the list width */
+    max-width: 300px; 
     background-color: #f9f9f9;
   }
 
@@ -121,3 +118,137 @@ h1 {
     padding: 10px;
     border-bottom: 1px solid #ddd;
   }
+  /* Global Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f9;
+}
+
+header {
+  background-color: #3aa4ac;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+h1 {
+  margin: 0;
+  font-size: 36px;
+}
+
+/* Table Styles */
+.products-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.products-table th, .products-table td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+.products-table th {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.products-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.products-table tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Sort Button */
+.sort-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #4CAF50;
+}
+
+/* Pagination Styles */
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.page-btn {
+  padding: 10px 20px;
+  margin: 0 5px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.page-btn:hover {
+  background-color: #45a049;
+}
+
+.page-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Controls Button */
+.controls-btns {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.controls-btns button {
+  padding: 8px 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.controls-btns button:hover {
+  background-color: #45a049;
+}
+
+.controls-btns button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Additional button container */
+.action-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.action-btn {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.action-btn:hover {
+  background-color: #45a049;
+}
+
+.action-btn:focus {
+  outline: none;
+}
+
+#refresh-btn {
+  margin-left: 0; /* Align it to the left side */
+}
+
+#go-to-cart-btn {
+  margin-right: 0; /* Align it to the right side */
+}

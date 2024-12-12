@@ -13,3 +13,19 @@ export const renderRealTimeProductsView = async (req, res) => {
         res.status(500).send(`<h1>Error</h1><h3>${error.message}</h3>`);
     }
 };
+
+export const renderCartView = async (req, res) => {
+    try {
+        res.render("cart", { title: "Carrito de compras" });
+    } catch (error) {
+        res.status(500).send(`<h1>Error</h1><h3>${error.message}</h3>`);
+    }
+};
+
+export const renderProductDetails = async (req, res) => {
+    try {
+        res.render("productDetail", { title: "Carrito de compras" });
+    } catch (error) {
+        res.status(500).send(`<h1>Error</h1><h3>${error.message}</h3>`);
+    }
+};

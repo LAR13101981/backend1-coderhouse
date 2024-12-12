@@ -1,18 +1,24 @@
 import { Router } from "express";
-import { httpAddNewCart, httpAddProductToCart, httpGetAllCarts, httpGetCartById, htttpDeleteCartById } from "../controllers/carts.controller.js";
+import {
+    httpCreateNewCart,
+    httpAddProductToCart,
+    httpGetAllCarts,
+    httpGetCartById,
+    htttpDeleteAllProductsFromCart,
+    httpRemoveProductFromCart } from "../controllers/carts.controller.js";
 
-// Asignando la instancia de router de express a una variable
 const cartRouter = Router();
 
-// Ruta para crea un carrito 
-cartRouter.post("/", httpAddNewCart);
-// Ruta para agregar productos a un carrito existente
-cartRouter.post("/:cid/product/:pid", httpAddProductToCart);
-// Ruta para traer un producto por su ID
+cartRouter.post("/", httpCreateNewCart);
+
+cartRouter.put("/:cid/product/:pid", httpAddProductToCart);
+
 cartRouter.get("/:cid", httpGetCartById);
-// Ruta pra traer todos los carritos
+
 cartRouter.get("/", httpGetAllCarts);
-// Borra un carrito por su Id
-cartRouter.delete("/:cid", htttpDeleteCartById );
+
+cartRouter.delete("/:cid", htttpDeleteAllProductsFromCart );
+
+cartRouter.delete("/:cid/product/:pid", httpRemoveProductFromCart);
 
 export default cartRouter;

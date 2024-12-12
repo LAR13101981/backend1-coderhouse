@@ -4,7 +4,6 @@ const ROOT_PATH = path.resolve();
 
 const SRC_PATH = path.join(ROOT_PATH, "src");
 
-// Define las rutas del proyecto
 const paths = {
     root: ROOT_PATH,
     src: SRC_PATH,

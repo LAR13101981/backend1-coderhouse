@@ -1,49 +1,36 @@
 import { Server } from "socket.io";
-import ProductModel from "../models/product.model.js";
-import { fileURLToPath } from "url";
-import fs from "fs";
-import path from "path";
-import paths from "../utils/paths.js";
-import { generateNameForFile } from "../utils/random.js";
+import ProductManager from "../managers/product.manager.js";
 
-const productInstance = new ProductModel();
-// Configura el servidor Socket.IO
+const productInstance = new ProductManager();
+
 export const config = (httpServer) => {
-    // Crea una nueva instancia del servidor Socket.IO
+
     const socketServer = new Server(httpServer);
 
-    // Escucha el evento de conexión de un nuevo cliente
     socketServer.on("connection", async (socket) => {
         console.log("Conexion establecida", socket.id);
+
         socketServer.emit("products-list", { products: await productInstance.getAllProducts() });
 
-        const __filename = fileURLToPath(import.meta.url);
-        const __dirname = path.dirname(__filename);
-
-        // Escucha si se agrega algun producto desde el cliente
-        socket.on("add-product", async ({ productData, fileData }) => {
+        socket.on("create-product", async ( { productData, fileData } ) => {
             try {
                 let fileInfo = null;
 
                 if (fileData) {
-                    // Extract the file extension from the Base64 data URL
-                    const matches = fileData.match(/^data:image\/(.*?);base64,/);
-                    const fileExtension = matches ? matches[1] : "jpg";
+                    const base64Data = fileData.split(",")[1];
+                    const buffer = Buffer.from(base64Data, "base64");
 
-                    // Generate a unique file name using generateNameForFile with the extracted extension
-                    const fileName = generateNameForFile(`file.${fileExtension}`);
+                    console.log("Buffer length:", buffer.length); // Ensure non-zero
+                    console.log("Buffer snippet:", buffer.toString("utf8", 0, 100));
 
-                    // Resolve the path from the root of the project
-                    const filePath = path.resolve(__dirname, paths.images, fileName);
-
-                    // Remove the Base64 prefix and write the file to disk
-                    const base64Data = fileData.replace(/^data:image\/.*?;base64,/, "");
-                    fs.writeFileSync(filePath, base64Data, "base64"); // Save the file
-
-                    fileInfo = { filename: fileName }; // Mimic Multer's output for consistency
+                    fileInfo = {
+                        originalname: `${productData.title || "uploaded-image"}.jpg`,
+                        buffer: buffer,
+                        mimetype: "image/jpeg",
+                    };
                 }
 
-                await productInstance.addNewProduct(productData, fileInfo);
+                await productInstance.createNewProduct( productData, fileInfo);
 
                 socketServer.emit("products-list", { products: await productInstance.getAllProducts() });
             } catch (error) {
@@ -51,15 +38,19 @@ export const config = (httpServer) => {
             }
         });
 
-        socket.on("delete-product", async (data)=>{
+        socket.on("delete-product", async (id)=>{
             try {
-                await productInstance.deleteProductById(data.id);
+                await productInstance.deleteProductById(id);
 
                 socketServer.emit("products-list", { products: await productInstance.getAllProducts() });
 
             } catch (error) {
                 socketServer.emit("error-message", { message: error.message });
             }
+        });
+
+        socket.on("disconnect", () => {
+            console.log("Se desconecto un cliente"); // Indica que un cliente se desconectó
         });
     });
 

@@ -6,7 +6,7 @@
     <section>
         <h3>Lista de productos</h3>
         <div>            
-            <ul id="products-list" class="products-list-style"></ul>
+            <ul id="products-list" class="realtime-products-list-style"></ul>
         </div>       
     </section>
     <section>
@@ -22,16 +22,20 @@
             
             <input type="text" name="price" placeholder="Precio del producto">
 
-            <input type="text" name="status" placeholder="true or false">
+            <label for="status">Status:</label>
+            <input type="checkbox" name="status" id="status">   
             
             <input type="text" name="stock" placeholder="Cantidad de stock">
 
             <input type="text" name="category" placeholder="Categoria / Laboratorio del producto">
 
+            <label for="availability">Availability:</label>
+            <input type="checkbox" name="availability" id="availability">
+
             <h4>Cargar una imagen del producto</h4>
             <input type="file" name="thumbnails">            
 
-            <input type="submit" value="Guardar" style="width:100">
+            <input type="submit" value="Guardar" style="width:120">
 
             <div></div>
         </form>
@@ -41,7 +45,7 @@
     <section>
         <h3>Eliminar producto</h3>
         <div class="delete-product-style">
-            <input type="number" class="delete-product-input-style" id="input-product-id"
+            <input type="text" class="delete-product-input-style" id="input-product-id"
                 placeholder="ID del producto">
             <button id="btn-delete-product">Eliminar</button>
         </div>
@@ -51,4 +55,4 @@
 </main>
 
 <script src="/socket.io/socket.io.js "></script>
-<script src="/api/public/js/products.socket.js"></script>
+<script type="module" src="/api/public/js/products.socket.js"></script>
