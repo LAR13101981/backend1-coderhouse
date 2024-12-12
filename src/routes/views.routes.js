@@ -1,9 +1,10 @@
 import { Router } from "express";
-import { renderHomeView, renderRealTimeProductsView, renderCartView } from "../controllers/views.controller.js";
+import { renderHomeView, renderRealTimeProductsView, renderCartView, renderProductDetails } from "../controllers/views.controller.js";
 
 const viewHomeRouter = Router();
 const viewRealTimeRouter = Router();
 const viewCartRouter = Router();
+const viewProductDetailsRouter = Router();
 
 viewHomeRouter.get("/", renderHomeView);
 
@@ -11,4 +12,6 @@ viewRealTimeRouter.get("/", renderRealTimeProductsView);
 
 viewCartRouter.get("/", renderCartView);
 
-export { viewHomeRouter, viewRealTimeRouter, viewCartRouter };
+viewProductDetailsRouter.get("/", renderProductDetails);
+
+export { viewHomeRouter, viewRealTimeRouter, viewCartRouter, viewProductDetailsRouter };

@@ -61,15 +61,34 @@ export default class CartManager {
         }
     }
 
-    async addProductToCart(cartId, productId){
+    async addProductsToCart(cartId, producstData){
+        try {
+            const selectedCart = await this.#findCartById(cartId);
+
+            selectedCart.products = producstData.map((product) => ({
+                product:product._id,
+                quantity: product.quantity,
+            }));
+
+            await selectedCart.save();
+
+            return selectedCart;
+
+        } catch (error) {
+            throw new ErrorHandler(error);
+        }
+    }
+
+    async updateProductQuantityInCart(cartId, productId, newQuantity){
         try {
             const selectedCart = await this.#findCartById(cartId);
             const productIndex = selectedCart.products.findIndex((item) => item.product._id.toString() === productId);
+            console.log(newQuantity);
 
             if (productIndex >= 0) {
-                selectedCart.products[productIndex].quantity++;
+                selectedCart.products[productIndex].quantity = newQuantity;
             } else {
-                selectedCart.products.push({ product: productId, quantity: 1 });
+                throw new ErrorHandler("Producto no encontrado en el carrito", 404);
             }
 
             await selectedCart.save();
@@ -81,7 +100,7 @@ export default class CartManager {
 
     }
 
-    async removeProductFromCart(cartId, productId){
+    async removeOneProductFromCart(cartId, productId){
         try {
             const selectedCart = await this.#findCartById(cartId);
             const productIndex = selectedCart.products.findIndex((item) => item.product.toString() === productId);
@@ -108,6 +127,19 @@ export default class CartManager {
             await selectedCart.save();
 
             return { message: `Los productos del carrito con el Id: ${cartId} fueron borrados.` };
+
+        } catch (error) {
+            throw new ErrorHandler(error);
+        }
+    }
+
+    async deleteCartById(cartId){
+        try {
+            const selectedCart = await this.#findCartById(cartId);
+
+            await this.#cartModel.deleteOne({ _id: selectedCart._id });
+
+            return { message: `El carrito con el Id: ${cartId} fue borrado.` };
 
         } catch (error) {
             throw new ErrorHandler(error);

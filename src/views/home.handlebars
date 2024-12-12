@@ -11,23 +11,23 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th id="sort-name">Nombre Producto 
-                            <!-- Button for sorting by name -->
-                            <button class="sort-btn" onclick="sortByName('asc')">🔼</button>
-                            <button class="sort-btn" onclick="sortByName('desc')">🔽</button>
+                        <th id="sort-name">Nombre Producto
+                            <!-- Buttons for sorting by name -->
+                            <button class="sort-btn" data-sort="name" data-order="asc">🔼</button>
+                            <button class="sort-btn" data-sort="name" data-order="desc">🔽</button>
                         </th>
                         <th>Precio</th>
-                        <th>Stock</th>
-                        <th id="sort-availability">Disponibilidad 
-                            <!-- Button for sorting by availability -->
-                            <button class="sort-btn" onclick="sortByAvailability('asc')">🔼</button>
-                            <button class="sort-btn" onclick="sortByAvailability('desc')">🔽</button>
+                        <th id="sort-availability">Disponibilidad
+                            <!-- Buttons for sorting by availability -->
+                            <button class="sort-btn" data-sort="availability" data-order="asc">🔼</button>
+                            <button class="sort-btn" data-sort="availability" data-order="desc">🔽</button>
                         </th>
+                        <th>Cantidad</th> <!-- New Quantity Column -->
                         <th>Controles</th>
                     </tr>
                 </thead>
                 <tbody id="products-list" class="products-list">
-                    <!-- Product rows will be inserted here dynamically -->
+                    <!-- Dynamic content populated by JavaScript -->
                 </tbody>
             </table>
         </div>
@@ -43,17 +43,12 @@
             <button id="next-page" class="page-btn">Siguiente</button>
             <button id="last-page" class="page-btn">Última</button>
         </div>
-
-        <!-- Additional Buttons (Refresh & Go to Cart) -->
+        
         <div class="action-buttons">
-            <!-- Refresh Button (left side) -->
-            <button id="refresh-btn" class="action-btn">Actualizar Lista</button>
-
-            <!-- Go to Cart Button (right side) -->
-            <button id="go-to-cart-btn" class="action-btn">🛒 Ir al Carrito</button>
+            <button id="refresh-btn" class="action-btn">Refrescar</button>
+            <button id="goto-cart-btn" class="action-btn">Ir al Carrito</button>
         </div>
     </section>
 </main>
 
 <script src="/api/public/js/products.js"></script>
-

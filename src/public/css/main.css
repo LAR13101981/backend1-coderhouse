@@ -1,124 +1,7 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
-h1 {
-    color: rgb(0, 0, 0);
-}
-
-.error404 {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.error404 img {
-    width: 400px;
-}
-
-.products-style {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    max-width: 300px; 
-    margin: 0; 
-    align-items: flex-start; 
-  }
-  
-  .products-style input {
-    padding: 8px;
-    font-size: 16px;
-    width: 100%; 
-    box-sizing: border-box; 
-  }
-  
-  .products-style input[type="submit"] {
-    background-color: blue;
-    color: white;
-    border: none;
-    cursor: pointer;
-    align-self: flex-start; 
-  }
-  
-  .products-style input[type="submit"]:hover {
-    background-color: darkblue;
-  }  
-  
-.realtime-products-list-style {
-    list-style-type: none; 
-    padding: 0;
-    margin: 20px 0;
-    border: 1px solid #ddd; 
-    border-radius: 5px;
-    max-width: 300px; 
-    background-color: #f9f9f9;
-  }
-  
-  .realtime-products-list-style li {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .realtime-products-list-style li:last-child {
-    border-bottom: none; 
-  }  
-  
-  .delete-product-style {
-    display: flex;
-    align-items: center;
-    gap: 10px; 
-    margin-top: 20px;
-  }
-  
-  .delete-product-input-style {
-    padding: 8px;
-    font-size: 14px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    width: 150px; 
-  }
-  
-  .delete-product-style #btn-delete-product {
-    padding: 8px 16px;
-    background-color: #ff4d4d; 
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.3s ease; 
-  }
-  
-  .delete-product-style #btn-delete-product:hover {
-    background-color: #e60000; 
-  }  
-  
-  .error-message-style {
-    color: #ff4d4d; 
-    font-weight: bold;
-    font-size: 24px;  
-    border-radius: 5px;
-    padding: 10px;
-    margin-top: 10px;
-    max-width: 300px;
-  }
-
-  .home-products-list-style {
-    list-style-type: none; 
-    padding: 0;
-    margin: 20px 0;
-    border: 1px solid #ddd; 
-    border-radius: 5px;
-    max-width: 300px; 
-    background-color: #f9f9f9;
-  }
-
-  .home-products-list-style li {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-  }
-  /* Global Styles */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -127,7 +10,7 @@ body {
 }
 
 header {
-  background-color: #3aa4ac;
+  background-color: #3aac93;
   color: white;
   padding: 20px;
   text-align: center;
@@ -138,14 +21,14 @@ h1 {
   font-size: 36px;
 }
 
-/* Table Styles */
 .products-table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
 }
 
-.products-table th, .products-table td {
+.products-table th,
+.products-table td {
   padding: 10px;
   text-align: center;
   border: 1px solid #ddd;
@@ -164,15 +47,6 @@ h1 {
   background-color: #f1f1f1;
 }
 
-/* Sort Button */
-.sort-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #4CAF50;
-}
-
-/* Pagination Styles */
 .pagination {
   display: flex;
   justify-content: center;
@@ -197,7 +71,6 @@ h1 {
   cursor: not-allowed;
 }
 
-/* Controls Button */
 .controls-btns {
   display: flex;
   justify-content: center;
@@ -221,7 +94,6 @@ h1 {
   cursor: not-allowed;
 }
 
-/* Additional button container */
 .action-buttons {
   display: flex;
   justify-content: space-between;
@@ -241,14 +113,10 @@ h1 {
   background-color: #45a049;
 }
 
-.action-btn:focus {
-  outline: none;
-}
-
 #refresh-btn {
-  margin-left: 0; /* Align it to the left side */
+  margin-left: 0;
 }
 
 #go-to-cart-btn {
-  margin-right: 0; /* Align it to the right side */
+  margin-right: 0;
 }

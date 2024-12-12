@@ -33,9 +33,9 @@ export const httpGetCartById = async (req, res) => {
     }
 };
 
-export const httpAddProductToCart = async (req, res) => {
+export const httpAddProductsToCart = async (req, res) => {
     try {
-        const updatedCart = await cartInstance.addProductToCart(req.params.cid, req.params.pid);
+        const updatedCart = await cartInstance.addProductsToCart(req.params.cid, req.body);
 
         res.status(200).json({ messsage: "Carrito actualizado", payload: updatedCart });
     } catch (error) {
@@ -43,9 +43,20 @@ export const httpAddProductToCart = async (req, res) => {
     }
 };
 
-export const httpRemoveProductFromCart = async (req, res) => {
+export const httpUpdateProductQuantityInCart = async (req, res) => {
     try {
-        const updatedCart = await cartInstance.removeProductFromCart(req.params.cid, req.params.pid);
+        const updatedCart = await cartInstance.updateProductQuantityInCart(req.params.cid, req.params.pid, req.body.quantity);
+
+        res.status(200).json({ messsage: "Carrito actualizado", payload: updatedCart });
+    } catch (error) {
+        res.status(error.code || 500).json({ message: error.message });
+    }
+};
+
+export const httpRemoveOneProductFromCart = async (req, res) => {
+    try {
+
+        const updatedCart = await cartInstance.removeOneProductFromCart(req.params.cid, req.params.pid );
 
         res.status(200).json({ messsage: "Se borro el producto del carriot", payload: updatedCart });
     } catch (error) {
@@ -62,3 +73,13 @@ export const htttpDeleteAllProductsFromCart = async (req, res) => {
         res.status(error.code || 500).json({ message: error.message });
     }
 };
+
+export const httpDeleteCartById = async (req, res) => {
+    try {
+        const cart= await cartInstance.deleteCartById(req.params.cid)
+
+        res.status(200).json({ message: "Se borro el carrito", payload: cart });
+    } catch (error) {
+        res.status(error.code || 500).json({ message: error.message });
+    }
+}

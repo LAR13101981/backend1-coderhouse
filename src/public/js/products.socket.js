@@ -8,7 +8,7 @@ const imputProductId = document.getElementById("input-product-id");
 const btnDeleteProduct = document.getElementById("btn-delete-product");
 
 socket.on("products-list", (data) => {
-    const products = data.products ?? [];
+    const products = data.products.docs ?? [];
     productsList.innerHTML = "";
 
     products.forEach((product) => {

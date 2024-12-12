@@ -29,18 +29,24 @@ export default class ProductManager {
             const $and = [];
 
             if (params?.title) $and.push({ title: { $regex: params.title, $options: "i" } });
-
+            if (params?.category) $and.push({ category: { $regex: params.category, $options: "i" } });
+            if (params?.availability) {
+                const availability = (convertToBoolean(params.availability) );
+                $and.push({ availability });
+            }
             const filters = $and.length > 0 ? { $and } : {};
 
             const sort = {
-                asc: { title: 1 },
-                desc: { title: -1 },
+                asc: { price: 1, availability: 1 },
+                desc: { price: -1, availability: -1 },
             };
+
+            const sortOption = params?.sort ? sort[params.sort] : {};
 
             const paginationOptions = {
                 limit: params?.limit || 5,
                 page: params?.page || 1,
-                sort: sort [ params?.sort] || {},
+                sort: sortOption,
                 //populate: "thumbnails",
                 lean: true,
             };

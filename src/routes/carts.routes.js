@@ -1,24 +1,30 @@
 import { Router } from "express";
 import {
     httpCreateNewCart,
-    httpAddProductToCart,
+    httpAddProductsToCart,
     httpGetAllCarts,
     httpGetCartById,
     htttpDeleteAllProductsFromCart,
-    httpRemoveProductFromCart } from "../controllers/carts.controller.js";
+    httpDeleteCartById,
+    httpRemoveOneProductFromCart,
+    httpUpdateProductQuantityInCart } from "../controllers/carts.controller.js";
 
 const cartRouter = Router();
 
 cartRouter.post("/", httpCreateNewCart);
 
-cartRouter.put("/:cid/product/:pid", httpAddProductToCart);
+cartRouter.put("/:cid", httpAddProductsToCart);
+
+cartRouter.put("/:cid/products/:pid", httpUpdateProductQuantityInCart);
 
 cartRouter.get("/:cid", httpGetCartById);
 
 cartRouter.get("/", httpGetAllCarts);
 
-cartRouter.delete("/:cid", htttpDeleteAllProductsFromCart );
+cartRouter.delete("/:cid", httpDeleteCartById);
 
-cartRouter.delete("/:cid/product/:pid", httpRemoveProductFromCart);
+cartRouter.delete("/:cid/products", htttpDeleteAllProductsFromCart );
+
+cartRouter.delete("/:cid/products/:pid", httpRemoveOneProductFromCart);
 
 export default cartRouter;

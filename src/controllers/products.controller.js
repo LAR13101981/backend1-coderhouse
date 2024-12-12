@@ -6,7 +6,7 @@ export const httpCreateNewProduct = async (req, res) =>{
     try {
         const newProduct = await productInstance.createNewProduct(req.body, req.file);
 
-        res.status(201).json({ message: "Product added", payload: newProduct });
+        res.status(201).json({ status: "Success", payload: newProduct });
     } catch (error) {
         res.status(error.code || 500).json({ message: error.message });
     }
@@ -18,7 +18,7 @@ export const httpGetAllproducts = async (req, res) => {
         const products = await productInstance.getAllProducts(params);
 
         res.status(200).json({
-            message: "This are all the products",
+            status: "Success",
             payload: products });
     } catch (error) {
         res.status(error.code || 500).json({ message: error.message });

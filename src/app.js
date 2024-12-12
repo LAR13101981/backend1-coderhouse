@@ -3,7 +3,7 @@ dotenv.config();
 import express from "express";
 import productRouter from "./routes/products.routes.js";
 import cartRouter from "./routes/carts.routes.js";
-import { viewHomeRouter, viewRealTimeRouter, viewCartRouter } from "./routes/views.routes.js";
+import { viewHomeRouter, viewRealTimeRouter, viewCartRouter, viewProductDetailsRouter } from "./routes/views.routes.js";
 import { config as configHandlebars } from "./config/handlebars.config.js";
 import { config as configWebsocket } from "./config/websocket.config.js";
 import { connectDB } from "./config/mongoose.config.js";
@@ -25,6 +25,7 @@ app.use("/api/carts", cartRouter);
 app.use("/", viewHomeRouter);
 app.use("/realTimeProducts", viewRealTimeRouter);
 app.use("/cart", viewCartRouter);
+app.use("/productDetails", viewProductDetailsRouter);
 
 app.use("*", (req, res) => {
     res.status(404).render("error404", { title: "Error 404" });
