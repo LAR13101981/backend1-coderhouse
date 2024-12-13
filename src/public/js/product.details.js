@@ -12,7 +12,6 @@ const loadProductDetails = async () => {
         const fullProduct = await getProductDetails(productId);
 
         const product = fullProduct.payload;
-        console.log(product.title);
 
         document.getElementById("product-id").textContent = product._id;
         document.getElementById("product-title").textContent = product.title;
@@ -26,14 +25,15 @@ const loadProductDetails = async () => {
         document.getElementById("product-description").textContent = product.description || "Sin descripción";
 
         const productImage = document.getElementById("product-image");
-        if (product.image) {
-            productImage.src = product.image;
+
+        if (product.thumbnails && product.thumbnails.src) {
+            productImage.src = product.thumbnails.src;
             productImage.style.display = "block";
         } else {
             productImage.style.display = "none";
         }
     } catch (error) {
-        console.error("Error loading product details:", error);
+        throw new Error("Error loading product details:", error);
     }
 };
 

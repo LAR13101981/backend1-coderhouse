@@ -1,15 +1,32 @@
 <header>
-<h1>Carrito de compras</h1>
+    <h1>Carrito de Compras</h1>
 </header>
 
 <main>
     <section>
-        <h3>Lista de productos agregados</h3>
-        <div>            
-            <ul id="cart-list" class= "home-products-list-style"></ul>
+        <h3>Productos en el Carrito</h3>
+        
+        <div>
+            <table id="cart-table" class="cart-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Producto</th>
+                        <th>Precio</th>
+                        <th>Controles</th>
+                    </tr>
+                </thead>
+                <tbody id="cart-list" class="cart-list">
+                    
+                </tbody>
+            </table>
         </div>
-        <button id="btn-refresh-cart-list">Actualizar Carrito</button>
+        
+        <div class="action-buttons">
+            <button id="empty-cart-btn" class="action-btn">Vaciar Carrito</button>
+            <button id="go-back-btn" class="action-btn">Volver a Productos</button>
+        </div>
     </section>
 </main>
 
-<script src="/api/public/js/cart.js"></script>
+<script src="/api/public/js/carts.js"></script>

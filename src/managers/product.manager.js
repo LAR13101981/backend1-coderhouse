@@ -15,12 +15,19 @@ export default class ProductManager {
         if(!isValidID(id)){
             throw new ErrorHandler("El id no es valido", 400);
         }
-        const currentProduct = await this.#productModel.findById(id).populate("thumbnails");
+        const currentProduct = await this.#productModel.findById(id).populate("thumbnails").lean();
 
         if (!currentProduct){
             throw new ErrorHandler(`No se encontro un producto con el Id:${id}`, 404);
         }
+        if (currentProduct.thumbnails) {
+            const { data, filename, contentType } = currentProduct.thumbnails;
 
+            currentProduct.thumbnails = {
+                filename,
+                src: `data:${contentType || "image/jpeg"};base64,${data.toString("base64")}`,
+            };
+        }
         return currentProduct;
     }
 
@@ -36,18 +43,15 @@ export default class ProductManager {
             }
             const filters = $and.length > 0 ? { $and } : {};
 
-            const sort = {
-                asc: { price: 1, availability: 1 },
-                desc: { price: -1, availability: -1 },
-            };
+            const sortBy = params?.sortBy || "title";
+            const sortOrder = params?.sort === "desc" ? -1 : 1;
 
-            const sortOption = params?.sort ? sort[params.sort] : {};
+            const sortOption = { [sortBy]: sortOrder };
 
             const paginationOptions = {
                 limit: params?.limit || 5,
                 page: params?.page || 1,
                 sort: sortOption,
-                //populate: "thumbnails",
                 lean: true,
             };
 
@@ -102,7 +106,10 @@ export default class ProductManager {
 
     async updateProductById (id, data, file) {
         try {
-            const product = await this.#findProductById(id);
+            const product = await this.#productModel.findById(id).populate("thumbnails");
+            if (!product) {
+                throw new ErrorHandler(`Product with id ${id} not found`, 404);
+            }
 
             let imageId = product.thumbnails;
 
@@ -120,7 +127,7 @@ export default class ProductManager {
 
             const updatedProduct = {
                 ...data,
-                status: data.status ? convertToBolean(data.status) : product.status,
+                status: data.status ? convertToBoolean(data.status) : product.status,
                 availability: data.availability ? convertToBoolean(data.availability) : product.availability,
                 thumbnails: imageId,
             };

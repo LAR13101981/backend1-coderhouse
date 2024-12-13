@@ -61,17 +61,42 @@ export default class CartManager {
         }
     }
 
-    async addProductsToCart(cartId, producstData){
+    async replaceProductsInToCart(cartId, producstData){
         try {
             const selectedCart = await this.#findCartById(cartId);
 
             selectedCart.products = producstData.map((product) => ({
-                product:product._id,
+                product: product._id,
                 quantity: product.quantity,
             }));
 
             await selectedCart.save();
 
+            return selectedCart;
+
+        } catch (error) {
+            throw new ErrorHandler(error);
+        }
+    }
+
+    async AddOneProductToCart(cartId, productsData) {
+        try {
+            const selectedCart = await this.#findCartById(cartId);
+
+            productsData.forEach((product) => {
+                const existingProduct = selectedCart.products.find((item) => item.product.equals(product._id));
+
+                if (existingProduct) {
+                    existingProduct.quantity += product.quantity;
+                } else {
+                    selectedCart.products.push({
+                        product: product._id,
+                        quantity: product.quantity,
+                    });
+                }
+            });
+
+            await selectedCart.save();
             return selectedCart;
 
         } catch (error) {
@@ -103,7 +128,7 @@ export default class CartManager {
     async removeOneProductFromCart(cartId, productId){
         try {
             const selectedCart = await this.#findCartById(cartId);
-            const productIndex = selectedCart.products.findIndex((item) => item.product.toString() === productId);
+            const productIndex = selectedCart.products.findIndex((item) => item.product._id.toString() === productId);
 
             if (productIndex < 0){
                 throw new ErrorHandler(`No existe un producto con el Id ${productId} en el carrito`, 404);
@@ -121,7 +146,7 @@ export default class CartManager {
     async deleteAllProductsFromCart(cartId){
         try {
             const selectedCart = await this.#findCartById(cartId);
-
+            console.log(selectedCart);
             selectedCart.products = [];
 
             await selectedCart.save();
